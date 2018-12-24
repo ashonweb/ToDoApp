@@ -37,12 +37,14 @@ class ToDoComponent extends Component {
     } 
     else if(intArray.includes(value))
     {
-      for (var i = intArray.length ; i--;) {
+      for (let i = intArray.length - 1; i >= 0; i--) {
         console.log("test");
         if (intArray[i] === value) {
-          intArray.splice(i, 1);
-          alert('deleted');
-          console.log("Rest");
+          let newArray = intArray.splice(i, 1) && intArray.slice();
+          this.setState({
+            intArray: newArray,
+          })
+          break;
         }
 
       }
@@ -59,7 +61,7 @@ class ToDoComponent extends Component {
         <form onSubmit={this.onSubmit}>
         <label>
           <input
-            type="number"
+            type="text"
             value={this.state.value}
             onChange={this.onChange}
             required
