@@ -30,3 +30,72 @@
     transform: rotate(360deg);
   }
 }
+
+.child-list-item{
+  /*background-color: blue;*/
+  color: rgb(212, 52, 52);
+  box-shadow: 2px 2px 30px lightgray; 
+  padding: 20px;
+  border-radius: 10px;  width: 500px;
+  height: 550px;
+  overflow: hidden;
+  position:relative;
+  margin: 30px 410px;
+}
+
+.child:hover {
+  color: black;
+  background-color:aliceblue;
+  padding: 12px;
+
+
+ 
+}
+button{
+background-color:brown(88, 148, 163);
+  
+  text-decoration: none;
+  padding:5px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  width:125px;
+  
+}
+.addbutton{
+  margin-left:10px;
+  width:105px;
+  font-size: 15px;
+  padding: 10px;
+}
+input{
+  border-radius:8px;
+  padding: 10px;
+}
+.list {
+
+  margin: 10px;
+  list-style-type:none;
+  
+}
+ul{
+  text-decoration: none;
+  list-style-type:none;
+  padding: 0;
+}
+li{
+  text-decoration: none;
+}
+.child .child-inline {
+  display: inline-block;
+  vertical-align: top;
+  padding: 10
+}
+
+.edit, .value, .delete {
+  width: 30%;
+}
+
+.hello{
+  color: red;
+}

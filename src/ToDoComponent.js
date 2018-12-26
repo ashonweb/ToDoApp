@@ -5,17 +5,18 @@ class ToDoComponent extends Component {
     this.state = {
       value: '',
       intArray: [],
+      hovering: false,
     };
   }
   onChange = event => {
     this.setState({
       value: event.target.value,
-      
+      // console.log(value);
     });
   };
-
   onSubmit = event => {
-    event.preventDefault();    const { value, intArray } = this.state;
+    event.preventDefault();
+    const { value, intArray } = this.state;
     console.log(intArray);
     if (value === '') {
       return;
@@ -26,62 +27,84 @@ class ToDoComponent extends Component {
         intArray: intArrayNew,
       });
       // alert ("added");
+      console.log(intArray);
     }
   };
+  removeItem(index) {
+    console.log(index);
+    let newList = this.state.intArray.splice(index,1) && this.state.intArray.slice();
+    this.setState({intArray:newList})
+    console.log(newList);
+  }
+
   onDelete = event => {
     const { value, intArray } = this.state;
     console.log(intArray);
-    if (value === '') {
-      alert('nothing to delete ');
-      return;
-    } 
-    else if(intArray.includes(value))
+    console.log(value);
+    if(intArray.includes(value))
     {
       for (let i = intArray.length - 1; i >= 0; i--) {
         console.log("test");
         if (intArray[i] === value) {
           let newArray = intArray.splice(i, 1) && intArray.slice();
+  
           this.setState({
             intArray: newArray,
           })
           break;
         }
-
+  
       }
     }
     else{
       alert("unable to delete as value is not present,Please add the element");
     }
-    
   }
+  
+
+
+
+
+
+  
 
   render() {
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-        <label>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.onChange}
-            required
-          />
-        </label>
-        <button type="submit" value="submit" >
-          Add
-        </button>
-        <div>
-          {this.state.intArray.map((val, index) => {
-            return <div key={index}>{val}</div>;
-          })}
-        </div>
-        
+          <label>
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.onChange}
+              required
+            />
+          </label>
+          <button class="addbutton"type="submit">Add</button>
         </form>
-        <div>
-          {((this.state.value > 0) || (this.state.intArray !== []))&&
-            <button onClick={this.onDelete}>delete</button>
-          }
-        </div>
+        <div className="child-list-item">
+        <ul >{this.state.intArray.map((val,index) => {
+          return(
+            <li className="list">
+              <div className="child" key={index}>
+            <div className="child-inline edit">
+            <button
+            style={{color: 'black'}} 
+            bsStyle="primary" onClick={this.removeItem.bind(this,index)}>Delete</button>
+            </div>
+            <div className="child-inline value">{val}</div>
+            <button
+            style={{color: 'black'}} 
+            bsStyle="primary">Update</button>
+            <div className="child-inline value">
+            </div>
+            </div>
+            </li>
+            
+          );
+        })}
+        </ul>
+        </div>          
       </div>
     );
   }
