@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Modal from 'react-awesome-modal';
+
 class ToDoComponent extends Component {
   constructor(props) {
     super(props);
@@ -6,7 +8,18 @@ class ToDoComponent extends Component {
       value: '',
       intArray: [],
       hovering: false,
+      visible:false,
     };
+  }
+  openModal=()=>{
+    this.setState({
+      visible:true,
+    })
+  }
+  closeModal=()=>{
+    this.setState({
+      visible:false,
+    })
   }
   onChange = event => {
     this.setState({
@@ -60,6 +73,10 @@ class ToDoComponent extends Component {
       alert("unable to delete as value is not present,Please add the element");
     }
   }
+
+  toUpdate = (event,i) =>{
+   
+  }
   
 
 
@@ -93,11 +110,30 @@ class ToDoComponent extends Component {
             bsStyle="primary" onClick={this.removeItem.bind(this,index)}>Delete</button>
             </div>
             <div className="child-inline value">{val}</div>
-            <button
+            {/* <button
             style={{color: 'black'}} 
-            bsStyle="primary">Update</button>
-            <div className="child-inline value">
-            </div>
+            bsStyle="primary">Update</button> */}
+            {/* <button  onClick={this.()}>Update</button> */}
+            {/* <section>
+                <h1>React-Modal Examples</h1>
+                <input type="button" value="Open" onClick={() => this.openModal()} />
+                <Modal visible={this.state.visible} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div>
+                        <h1>Title</h1>
+                        <p>Some Contents</p>
+                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                    </div>
+                </Modal>
+            </section> */}
+            
+                
+                <button type="button" value="update" onClick={() => this.openModal()} >update</button>
+                <Modal visible={this.state.visible} width="400" height="200" margin-top="200"effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div>
+                        <input class="modalClass"type="text" value={this.state.value} />
+                        <a class="modalclosebutton" href="javascript:void(0);" onClick={() => this.closeModal()}>OK</a>
+                    </div>
+                </Modal>
             </div>
             </li>
             

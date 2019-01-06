@@ -68,9 +68,18 @@ background-color:brown(88, 148, 163);
   font-size: 15px;
   padding: 10px;
 }
+.modalclosebutton{
+  display: block;
+}
 input{
   border-radius:8px;
   padding: 10px;
+}
+.modalClass{
+  padding: 15px;
+  margin:50px;
+  text-align: center;
+
 }
 .list {
 
