@@ -70,6 +70,7 @@ background-color:brown(88, 148, 163);
 }
 .modalclosebutton{
   display: block;
+  cursor: pointer;
 }
 input{
   border-radius:8px;

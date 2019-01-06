@@ -5,20 +5,35 @@ class ToDoComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       value: '',
+      updateValue: {
+        id: null,
+        text: '',
+      },
       intArray: [],
       hovering: false,
       visible:false,
+      todoOb : {},
     };
   }
-  openModal=()=>{
+  openModal=(updateValue)=>{
     this.setState({
-      visible:true,
+      updateValue: updateValue,
+      visible: true,
     })
   }
   closeModal=()=>{
+    let newIntArray = this.state.intArray.map((val) => {
+      if(val.id === this.state.updateValue.id) {
+        return this.state.updateValue;
+      } else {
+        return val;
+      }
+    })
     this.setState({
       visible:false,
+      intArray: newIntArray,
     })
   }
   onChange = event => {
@@ -27,6 +42,15 @@ class ToDoComponent extends Component {
       // console.log(value);
     });
   };
+  onUpdateChange = event =>{
+    let newUpdateValue = {
+      ...this.state.updateValue
+    }
+    newUpdateValue.text = event.target.value;    
+    this.setState({
+      updateValue: newUpdateValue,
+    })
+  }
   onSubmit = event => {
     event.preventDefault();
     const { value, intArray } = this.state;
@@ -35,19 +59,31 @@ class ToDoComponent extends Component {
       return;
     } else {
       let intArrayNew = intArray.slice();
-      intArrayNew.push(value);
+      let taskObj = {
+        id: this.state.id + 1,
+        text: value,
+      }
+      intArrayNew.push(taskObj);
       this.setState({
         intArray: intArrayNew,
+        id: this.state.id + 1,
       });
       // alert ("added");
       console.log(intArray);
     }
   };
-  removeItem(index) {
-    console.log(index);
-    let newList = this.state.intArray.splice(index,1) && this.state.intArray.slice();
-    this.setState({intArray:newList})
-    console.log(newList);
+  removeItem = (id) => {
+    console.log(id);
+    let newList = this.state.intArray.filter((val, i) => {
+      if(val.id === id) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    this.setState({
+      intArray: newList,
+    })
   }
 
   onDelete = event => {
@@ -107,14 +143,14 @@ class ToDoComponent extends Component {
                   <div className="child-inline edit">
                     <button
                       style={{ color: 'black' }}
-                      bsStyle="primary" onClick={this.removeItem.bind(this, index)}>Delete</button>
+                      bsStyle="primary" onClick={() => this.removeItem(val.id)}>Delete</button>
                   </div>
-                  <div className="child-inline value">{val}</div>
-                  <button type="button" value="update" onClick={() => this.openModal()} >update</button>
+                  <div className="child-inline value">{val.text}</div>
+                  <button type="button" value="update" onClick={() => this.openModal(val)} >update</button>
                   <Modal visible={this.state.visible} width="400" height="200" margin-top="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
-                      <input class="modalClass" type="text" value={this.state.value} />
-                      <a class="modalclosebutton" href="javascript:void(0);" onClick={() => this.closeModal()}>OK</a>
+                      <input class="modalClass" type="text" value={this.state.updateValue.text} onChange={this.onUpdateChange} />
+                      <span class="modalclosebutton" onClick={this.closeModal}>OK</span>
                     </div>
                   </Modal>
                 </div>
