@@ -100,46 +100,28 @@ class ToDoComponent extends Component {
           <button class="addbutton"type="submit">Add</button>
         </form>
         <div className="child-list-item">
-        <ul >{this.state.intArray.map((val,index) => {
-          return(
-            <li className="list">
-              <div className="child" key={index}>
-            <div className="child-inline edit">
-            <button
-            style={{color: 'black'}} 
-            bsStyle="primary" onClick={this.removeItem.bind(this,index)}>Delete</button>
-            </div>
-            <div className="child-inline value">{val}</div>
-            {/* <button
-            style={{color: 'black'}} 
-            bsStyle="primary">Update</button> */}
-            {/* <button  onClick={this.()}>Update</button> */}
-            {/* <section>
-                <h1>React-Modal Examples</h1>
-                <input type="button" value="Open" onClick={() => this.openModal()} />
-                <Modal visible={this.state.visible} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+          <ul >{this.state.intArray.map((val, index) => {
+            return (
+              <li className="list">
+                <div className="child" key={index}>
+                  <div className="child-inline edit">
+                    <button
+                      style={{ color: 'black' }}
+                      bsStyle="primary" onClick={this.removeItem.bind(this, index)}>Delete</button>
+                  </div>
+                  <div className="child-inline value">{val}</div>
+                  <button type="button" value="update" onClick={() => this.openModal()} >update</button>
+                  <Modal visible={this.state.visible} width="400" height="200" margin-top="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
-                        <h1>Title</h1>
-                        <p>Some Contents</p>
-                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                      <input class="modalClass" type="text" value={this.state.value} />
+                      <a class="modalclosebutton" href="javascript:void(0);" onClick={() => this.closeModal()}>OK</a>
                     </div>
-                </Modal>
-            </section> */}
-            
-                
-                <button type="button" value="update" onClick={() => this.openModal()} >update</button>
-                <Modal visible={this.state.visible} width="400" height="200" margin-top="200"effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <div>
-                        <input class="modalClass"type="text" value={this.state.value} />
-                        <a class="modalclosebutton" href="javascript:void(0);" onClick={() => this.closeModal()}>OK</a>
-                    </div>
-                </Modal>
-            </div>
-            </li>
-            
-          );
-        })}
-        </ul>
+                  </Modal>
+                </div>
+              </li>
+            );
+            })}
+          </ul>
         </div>          
       </div>
     );
