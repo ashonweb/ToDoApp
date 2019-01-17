@@ -143,14 +143,17 @@ class ToDoComponent extends Component {
                   <div className="child-inline edit">
                     <button
                       style={{ color: 'black' }}
-                      bsStyle="primary" onClick={() => this.removeItem(val.id)}>Delete</button>
+                       onClick={() => this.removeItem(val.id)}>Delete</button>
                   </div>
                   <div className="child-inline value">{val.text}</div>
-                  <button type="button" value="update" onClick={() => this.openModal(val)} >update</button>
-                  <Modal visible={this.state.visible} width="400" height="200" margin-top="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                  <div className="child-inline edit">
+                  <button type="button" value="update" onClick={() => this.openModal(val)} >update</button> </div>
+
+                     <Modal visible={this.state.visible} width="400" height="200" margin-top="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
                       <input class="modalClass" type="text" value={this.state.updateValue.text} onChange={this.onUpdateChange} />
-                      <span class="modalclosebutton" onClick={this.closeModal}>OK</span>
+                      <button class="modalclosebutton" onClick={this.closeModal}>OK</button>
+                      
                     </div>
                   </Modal>
                 </div>

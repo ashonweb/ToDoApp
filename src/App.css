@@ -41,12 +41,14 @@
   overflow: hidden;
   position:relative;
   margin: 30px 410px;
+  background-color: cornsilk;
+  width: 567px;
 }
 
 .child:hover {
   color: black;
   background-color:aliceblue;
-  padding: 12px;
+  padding: 1px;
 
 
  
@@ -60,6 +62,7 @@ background-color:brown(88, 148, 163);
   cursor: pointer;
   border: none;
   width:125px;
+  height: 41px;
   
 }
 .addbutton{
@@ -71,6 +74,8 @@ background-color:brown(88, 148, 163);
 .modalclosebutton{
   display: block;
   cursor: pointer;
+  text-align: center;
+  margin-left:137px;
 }
 input{
   border-radius:8px;
@@ -99,11 +104,17 @@ li{
 .child .child-inline {
   display: inline-block;
   vertical-align: top;
-  padding: 10
+  width: 30%;
+  overflow-wrap: break-word;
+  
+
+
+
 }
 
 .edit, .value, .delete {
   width: 30%;
+
 }
 
 .hello{
