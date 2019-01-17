@@ -103,7 +103,8 @@ li{
 }
 .child .child-inline {
   display: inline-block;
-  vertical-align: top;
+  /* vertical-align: top; */
+  vertical-align: middle;
   width: 30%;
   overflow-wrap: break-word;
   
@@ -116,6 +117,7 @@ li{
   width: 30%;
 
 }
+
 
 .hello{
   color: red;
